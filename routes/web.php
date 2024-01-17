@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () {return view('welcome');});
+Route::get('/check-availability', [BookingController::class, 'checkAvailability']);
+Route::get('/check-price', [BookingController::class, 'checkPrice']);
+Route::post('/create-booking', [BookingController::class, 'createBooking']);
+Route::post('/cancel-booking/{bookingId}', [BookingController::class, 'cancelBooking']);
+Route::post('/amend-booking/{bookingId}', [BookingController::class, 'amendBooking']);
+
